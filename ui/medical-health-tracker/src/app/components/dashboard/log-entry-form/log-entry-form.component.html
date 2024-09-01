@@ -1,0 +1,104 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>Log Entry</h2>
+  <button mat-icon-button aria-label="Close dialog" (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <form [formGroup]="logForm" class="form-stack" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="date" placeholder="Choose a date" required>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="logForm.get('date')?.hasError('required')">Date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mood</mat-label>
+      <mat-select formControlName="mood" required>
+        <mat-option *ngFor="let option of scalesMap.mood | keyvalue" [value]="option.key">{{ option.value
+          }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('mood')?.hasError('required')">Mood is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Anxiety level</mat-label>
+      <mat-select formControlName="anxietyLevel" required>
+        <mat-option *ngFor="let option of scalesMap.anxietyLevel | keyvalue" [value]="option.key">{{ option.value
+          }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('anxietyLevel')?.hasError('required')">Anxiety level is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sleep Hours</mat-label>
+      <mat-select formControlName="sleepHours" required>
+        <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('sleepHours')?.hasError('required')">Sleep Hours is required</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sleep Quality</mat-label>
+      <mat-select formControlName="sleepQuality" required>
+        <mat-option *ngFor="let option of scalesMap.sleepQuality | keyvalue" [value]="option.key">{{ option.value
+          }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('sleepQuality')?.hasError('required')">Sleep Quality is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sleep Disturbances</mat-label>
+      <textarea matInput formControlName="sleepDisturbances"
+        placeholder="Describe any disturbances (e.g., waking up during the night, restless sleep)"></textarea>
+      <mat-error *ngIf="logForm.get('sleepDisturbances')?.hasError('maxlength')">
+        Sleep disturbances description is too long. Maximum length is 500 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Physical Activity</mat-label>
+      <textarea matInput formControlName="physicalActivity"
+        placeholder="Describe your physical activity (e.g., jogging, gym workout)">
+        </textarea>
+      <mat-error *ngIf="logForm.get('physicalActivity')?.hasError('required')">
+        Physical activity is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Social Interaction Frequency</mat-label>
+      <mat-select formControlName="socialInteractionsFrequency" required>
+        <mat-option *ngFor="let option of scalesMap.socialInteractionsFrequency | keyvalue" [value]="option.key">
+          {{ option.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('socialInteractionsFrequency')?.hasError('required')">Mood is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Stress Level</mat-label>
+      <mat-select formControlName="stressLevel" required>
+        <mat-option *ngFor="let option of scalesMap.stressLevel | keyvalue" [value]="option.key">
+          {{ option.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="logForm.get('stressLevel')?.hasError('required')">Stress Level is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Anxiety/Depression Symptoms</mat-label>
+      <textarea matInput formControlName="anxietyDepressionSymptoms"
+        placeholder="Describe any anxiety or depression symptoms "></textarea>
+      <mat-error *ngIf="logForm.get('anxietyDepressionSymptoms')?.hasError('maxlength')">
+        Anxiety/Depression Symptoms description is too long. Maximum length is 500 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" style="margin-right: 10px;" [disabled]="logForm.invalid">Submit</button>
+      <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

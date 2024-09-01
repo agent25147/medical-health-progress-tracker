@@ -1,0 +1,15 @@
+<div class="header-container">
+  <h3 class="title">Trends Data</h3>
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    Add New Log Entry</button>
+</div>
+
+<div class="chart-container">
+  <canvas baseChart
+    [data]="chartData"
+    [options]="chartOptions"
+    [plugins]="[]"
+    chartType="line">
+  </canvas>
+</div>

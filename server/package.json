@@ -1,0 +1,41 @@
+{
+  "name": "medical-health-progress-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx ts-node src/index.ts",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm -- migration:generate -d src/db_config.ts src/migrations/%npm_config_name%",
+    "migration:run": "npm run typeorm -- migration:run -d src/db_config.ts",
+    "mg": "npm run migration:generate --"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/joi": "^17.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "medical-health-progress-tracker": "file:",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "reflect-metadata": "^0.2.2",
+    "socket.io": "^4.7.5",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.1",
+    "@types/passport-google-oauth20": "^2.0.16",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
